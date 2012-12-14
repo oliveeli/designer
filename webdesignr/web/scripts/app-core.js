@@ -27,7 +27,7 @@ define([ 'jquery',
             var m = this.moduleData[moduleId].creator;
             this.moduleData[moduleId].instance =
                 new m({
-                    el: $('#page')
+                    el: $('#app-layout-page')
                 });
             this.moduleData[moduleId].instance.start.apply(this.moduleData[moduleId].instance);
         },

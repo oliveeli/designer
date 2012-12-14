@@ -106,7 +106,7 @@ define([
                     return;
                 }
                 this.__propertyViews__[key] = view;
-                $(this.el).append($(view.el).addClass( 'designer-properties-item' ));
+                $(this.el).append($(view.el).addClass( 'wd-properties-item' ));
                 view.on('inputChanged', function(newValue){
                     propertiesValue[key] = newValue;
                     propertiesValue.trigger('inputChanged', key, newValue, propertiesValue);

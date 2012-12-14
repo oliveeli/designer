@@ -1,0 +1,58 @@
+body {
+    background: #ebebeb;
+}
+
+.app-layout-container {
+    bottom: 0;
+    left: 0;
+    min-height: 768px;
+    min-width: 1024px;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.app-layout-logo {
+    padding: 0px 20px;
+}
+
+.app-layout-logo-link {
+    float: right;
+    width: 100px;
+}
+
+.app-layout-page {
+    position: absolute;
+    top: 83px;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
+.app-layout-footer {
+    background-color: #FAFAFA;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #F2F2F2);
+    background-repeat: repeat-x;
+    border: 1px solid #D4D4D4;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.app-login-errorblock {
+    color: #ff0000;
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    padding: 8px;
+    margin: 16px;
+}
+
+.app-login-form {
+    padding-top: 20px;
+}

@@ -18,7 +18,7 @@ define([
             'change #select-image': 'selectImage'
         },
 
-        className: 'designer-property-image-editor',
+        className: 'wd-properties-editor-image',
 
         template:_.template(ViewTemplate),
 

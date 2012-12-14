@@ -18,7 +18,7 @@ define([
             'click #remove': 'removeBorder'
         },
 
-        className: 'designer-property-border-editor',
+        className: 'wd-properties-editor-border',
 
         template:_.template(ViewTemplate),
 

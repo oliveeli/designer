@@ -14,7 +14,7 @@ define([
 
         tagName: 'canvas',
 
-        className: 'd-editor-scale',
+        className: 'wd-scale',
 
         drawScale: function(){
             var p = 40,

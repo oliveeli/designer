@@ -13,7 +13,7 @@ define([
 
     return Backbone.View.extend({
 
-        className: 'd-editor-element-toolbar',
+        className: 'wd-editor-comp-toolbar',
 
         template:_.template( ViewTemplate ),
 

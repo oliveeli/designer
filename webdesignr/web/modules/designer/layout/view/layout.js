@@ -11,7 +11,6 @@ define([
     'text!modules/designer/layout/tpl/layout.html'
 ], function($, _, Backbone, ViewTemplate){
         return Backbone.View.extend({
-            className: 'designer-layout-tree-column',
 
             events:{
                 'click #toolBarElementTabLink':'showToolBarElementTab',
@@ -31,37 +30,29 @@ define([
                 this.$('#propertiesTabLink').tab('show');
             },
 
-            initialize: function(){
-
-            },
-
             render: function(){
                 $(this.el).append(ViewTemplate);
                 return this;
             },
 
-            getFormExplorerContainer: function(){
-                return this.$('.container-form-explorer');
-            },
-
             getEditorContainer: function(){
-                return this.$('.container-editor');
+                return this.$('.wd-container-editor');
             },
 
-            getToolbarEditorContainer: function(){
-                return this.$('.container-toolbar-editor');
+            getToolbarContainer: function(){
+                return this.$('.wd-container-toolbar');
             },
 
-            getToolbarElementsContainer: function(){
-                return this.$('.container-toolbar-elements');
+            getDraggableComponentContainer: function(){
+                return this.$('.wd-container-draggable-comp');
             },
 
             getOutLineContainer: function(){
-                return this.$('.container-outline');
+                return this.$('.wd-container-outline');
             },
 
             getPropertiesContainer: function(){
-                return this.$('.container-properties');
+                return this.$('.wd-container-properties');
             },
 
             onChangeEditorSize: function(){

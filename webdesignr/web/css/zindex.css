@@ -1,0 +1,6 @@
+.pop-editor { z-index: 300000; }
+.colorpicker { z-index: 301000; }
+.wd-editor-comp-toolbar { z-index: 209000; }
+.wd-editor-comp-selected-append { z-index: 209010; }
+.wd-editor-comp-mask{ z-index: 1; }
+.wd-editor-inner { z-index: 1; }

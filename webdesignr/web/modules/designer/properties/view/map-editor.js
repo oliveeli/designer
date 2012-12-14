@@ -65,7 +65,7 @@ define([
             'click #add': 'clickAdd'
         },
 
-        className: 'designer-property-map-editor',
+        className: 'wd-properties-editor-map',
 
         template:_.template(ViewTemplate),
 

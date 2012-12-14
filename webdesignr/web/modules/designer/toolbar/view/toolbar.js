@@ -12,7 +12,7 @@ define([
 ], function($, _, Backbone, ViewTemplate){
         return Backbone.View.extend({
 
-            className: 'container-toolbar-editor-inner',
+            className: 'wd-layout-toolbar-inner',
 
             events: {
                 'click #save': 'onSave',

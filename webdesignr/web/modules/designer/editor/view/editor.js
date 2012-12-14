@@ -16,7 +16,7 @@ define([
 ], function($, _, Backbone, Context, ComponentType, PropertyType, ComponentTypeCollection, ToolbarView ) {
         return Backbone.View.extend({
 
-            className: 'designer-editor-inner',
+            className: 'wd-editor-inner',
 
             events: {
                 'click': 'onClick'
@@ -93,7 +93,7 @@ define([
                 var that = this;
 
                 $(this.el).selectable({
-                    cancel: 'a, .d-editor-element-toolbar, .cancel',
+                    cancel: 'a, .wd-editor-comp-toolbar, .cancel',
                     filter: '.d-editor-element',
                     start: function ( event, ui ) {
                         if( event.altKey ){
@@ -154,7 +154,7 @@ define([
                         zIndex = $de.find('z-index').text(),
                         rs = ComponentTypeCollection.buildEditorViewByXMLDocument( $de ),
                         $e = $( rs.view.el );
-                    $e.addClass('d-editor-element').append('<div class="d-editor-element-mask" />');
+                    $e.addClass('d-editor-element').append('<div class="wd-editor-comp-mask" />');
                     $e.css('position', 'absolute').css('left', left + 'px').css('top', top + 'px');
                     that.addElement( {
                         $e: $e,
@@ -182,7 +182,7 @@ define([
 
                 var EditorView = dropUi.helper.ComponentType.getEditorView(),
                     view = new EditorView().render(),
-                    $elem = $(view.el).addClass('d-editor-element').append('<div class="d-editor-element-mask" />');
+                    $elem = $(view.el).addClass('d-editor-element').append('<div class="wd-editor-comp-mask" />');
 
                 $elem.css('position', 'absolute').css('left', left).css('top', top);
 
@@ -250,7 +250,7 @@ define([
                     containment: $(that.el),
                     scroll: false,
                     opacity: 0.8,
-                    snap: '.d-snap-line',
+                    snap: '.wd-editor-snap-line',
                     start: function(event, ui){
 
                         that.selectReset();
@@ -299,10 +299,10 @@ define([
                         });
                     },
                     snapOn: function(event, ui) {
-                        ui.snapElement.addClass("d-snaped");
+                        ui.snapElement.addClass("wd-editor-snap-line-active");
                     },
                     snapOut: function(event, ui) {
-                        ui.snapElement.removeClass("d-snaped");
+                        ui.snapElement.removeClass("wd-editor-snap-line-active");
                     },
                     stop: function( event, ui ) {
                         that.getContext().clearSnapLine();
@@ -550,7 +550,7 @@ define([
                 }
 
                 this.__selectedArea__ =
-                    $('<div class="d-selected-area" style="position: absolute; z-index: 209090;'
+                    $('<div class="wd-editor-selected-area" style="position: absolute; z-index: 209090;'
                         +' width: ' + (sa.right-sa.left)
                         +'px; height: '+ (sa.bottom-sa.top)
                         +'px; left: '+ sa.left

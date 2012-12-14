@@ -49,7 +49,7 @@ define([
                     this.layout.getEditorContainer().append($(this.editorView.el));
                     this.renderScaleView();
                     var toolbarEditorView = new ToolbarEditorView().render();
-                    this.layout.getToolbarEditorContainer().append($(toolbarEditorView.el));
+                    this.layout.getToolbarContainer().append($(toolbarEditorView.el));
                     this.renderOutlineView( this.editorView.getContext() );
 
                     toolbarEditorView.on('save', this.onSave, this);
@@ -160,11 +160,11 @@ define([
                 },
 
                 addToolbarView: function( ToolbarItemView ){
-                    var $container = this.layout.getToolbarElementsContainer(),
+                    var $container = this.layout.getDraggableComponentContainer(),
                         EditorView = ToolbarItemView.ComponentType.getEditorView();
 
                     $(new ToolbarItemView().render().el)
-                        .addClass( 'd-toolbar-element' )
+                        .addClass( 'wd-draggable-comp-item' )
                         .appendTo( $container )
                         .draggable({
                             zIndex: 9999,

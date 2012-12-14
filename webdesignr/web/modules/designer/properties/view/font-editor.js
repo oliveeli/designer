@@ -23,7 +23,7 @@ define([
             'change #font-align': 'selectFontAlign'
         },
 
-        className: 'designer-property-font-editor',
+        className: 'wd-properties-editor-font',
 
         template:_.template(ViewTemplate),
 

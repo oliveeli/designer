@@ -19,7 +19,7 @@ define([
             'click #confirm': 'confirmData'
         },
 
-        className: 'designer-property-multi-select-editor',
+        className: 'wd-properties-editor-multi-select',
 
         template:_.template(ViewTemplate),
 

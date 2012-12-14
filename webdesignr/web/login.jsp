@@ -44,14 +44,14 @@ require([ 'jquery',
             <div class="modal-body" style="min-width: 300px; min-height: 300px;">
              
                 <c:if test="${not empty error}">
-                    <div class="errorblock">
+                    <div class="app-login-errorblock">
                         登陆失败, 请重试.<br /> 原因 :
                         ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
                     </div>
                 </c:if>
             
              
-                <form name='f' class="form-horizontal login-form" action="<c:url value='j_spring_security_check' />"
+                <form name='f' class="form-horizontal app-login-form" action="<c:url value='j_spring_security_check' />"
                     method='POST'>
                     <div class="control-group">
                         <label class="control-label" for="j_username">用户名：</label>

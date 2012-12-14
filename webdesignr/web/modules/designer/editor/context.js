@@ -175,21 +175,21 @@ define([
 
         onSelectComponentEditorElement: function ( $e ) {
             $e.css( 'z-index', '209000' );
-            $e.addClass('d-selected');
-            $( '<div class="d-selected-handle d-selected-handle-n"></div>' ).appendTo( $e );
-            $( '<div class="d-selected-handle d-selected-handle-s"></div>' ).appendTo( $e );
-            $( '<div class="d-selected-handle d-selected-handle-e"></div>' ).appendTo( $e );
-            $( '<div class="d-selected-handle d-selected-handle-w"></div>' ).appendTo( $e );
+            $e.addClass('wd-editor-comp-selected');
+            $( '<div class="wd-editor-comp-selected-append wd-editor-comp-selected-append-n"></div>' ).appendTo( $e );
+            $( '<div class="wd-editor-comp-selected-append wd-editor-comp-selected-append-s"></div>' ).appendTo( $e );
+            $( '<div class="wd-editor-comp-selected-append wd-editor-comp-selected-append-e"></div>' ).appendTo( $e );
+            $( '<div class="wd-editor-comp-selected-append wd-editor-comp-selected-append-w"></div>' ).appendTo( $e );
         },
 
         onUnSelectComponentEditorElement: function ( $e ) {
             $e.css( 'z-index', this.getElementZIndex( $e ) );
-            $e.removeClass('d-selected');
-            $e.find('.d-selected-handle').remove();
+            $e.removeClass('wd-editor-comp-selected');
+            $e.find('.wd-editor-comp-selected-append').remove();
         },
 
         getSelectElements: function(){
-            return this.__editorBody__.find('.d-selected');
+            return this.__editorBody__.find('.wd-editor-comp-selected');
         },
 
         getSelectElementSize: function (  ) {
@@ -197,7 +197,7 @@ define([
         },
 
         hasSelectElement: function ( $e ) {
-            return $e.hasClass('d-selected');
+            return $e.hasClass('wd-editor-comp-selected');
         },
 
         getElementByUuid: function ( uuid ) {
@@ -315,16 +315,16 @@ define([
                     centerLeftID = 'cy' + centerLeft;
 
                 if(!this.__snapLineX__[topLineID]){
-                    this.__snapLineX__[topLineID] = $('<div class="d-snap-line d-snap-line-x" style="position: absolute; z-index: 99999; left:0; right: 0; top: '+ top +'px;" />').appendTo(this.__editorBody__);
+                    this.__snapLineX__[topLineID] = $('<div class="wd-editor-snap-line wd-editor-snap-line-x" style="position: absolute; z-index: 99999; left:0; right: 0; top: '+ top +'px;" />').appendTo(this.__editorBody__);
                 }
                 if(!this.__snapLineX__[bottomLineID]){
-                    this.__snapLineX__[bottomLineID] = $('<div class="d-snap-line d-snap-line-x" style="position: absolute; z-index: 99999; left:0; right: 0; top: '+ bottom +'px;" />').appendTo(this.__editorBody__);
+                    this.__snapLineX__[bottomLineID] = $('<div class="wd-editor-snap-line wd-editor-snap-line-x" style="position: absolute; z-index: 99999; left:0; right: 0; top: '+ bottom +'px;" />').appendTo(this.__editorBody__);
                 }
                 if(!this.__snapLineY__[leftLineID]){
-                    this.__snapLineY__[leftLineID] = $('<div class="d-snap-line d-snap-line-y" style="position: absolute; z-index: 99999; top:0; bottom: 0; left: '+ left +'px;" />').appendTo(this.__editorBody__);
+                    this.__snapLineY__[leftLineID] = $('<div class="wd-editor-snap-line wd-editor-snap-line-y" style="position: absolute; z-index: 99999; top:0; bottom: 0; left: '+ left +'px;" />').appendTo(this.__editorBody__);
                 }
                 if(!this.__snapLineY__[rightLineID]){
-                    this.__snapLineY__[rightLineID] = $('<div class="d-snap-line d-snap-line-y" style="position: absolute; z-index: 99999; top:0; bottom: 0; left: '+ right +'px;" />').appendTo(this.__editorBody__);
+                    this.__snapLineY__[rightLineID] = $('<div class="wd-editor-snap-line wd-editor-snap-line-y" style="position: absolute; z-index: 99999; top:0; bottom: 0; left: '+ right +'px;" />').appendTo(this.__editorBody__);
                 }
             }
         },

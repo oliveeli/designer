@@ -110,7 +110,7 @@
 	
 	<target name="copytotomcat" depends="initclean, copyweb, jar">
 		<echo>${ant.project.name} 复制网页到tomcat</echo>
-		<copy todir="${tomcat.dir}/webapps/form-design-demo">
+		<copy todir="${tomcat.dir}/webapps/${ant.project.name}">
 			<fileset dir="${buildweb.dir}">
 				<include name="**/*.*"/>
 			</fileset>

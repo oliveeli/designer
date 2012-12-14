@@ -12,7 +12,7 @@ define([
 ], function($, _, Backbone, ViewTemplate){
     return Backbone.View.extend({
 
-        className: 'd-outline-item',
+        className: 'wd-outline-item',
 
         events: {
             'click': 'onClick'
@@ -30,11 +30,11 @@ define([
         },
 
         onSelectComponentModel: function( ){
-            $(this.el).addClass('d-outline-item-select');
+            $(this.el).addClass('wd-outline-item-select');
         },
 
         onUnSelectComponentModel: function( ) {
-            $(this.el).removeClass('d-outline-item-select');
+            $(this.el).removeClass('wd-outline-item-select');
         },
 
         onClick: function( event ){
