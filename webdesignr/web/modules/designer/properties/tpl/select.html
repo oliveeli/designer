@@ -1,0 +1,13 @@
+<div class="designer-property-column1"><%=property.name%></div>
+<div class="designer-property-column2">
+    <select id="p-select" class="designer-property-select">
+        <%
+        for(var key in property.options){
+            var value = property.options[key];
+        %>
+        <option value="<%=value%>"><%=key%></option>
+        <%
+        }
+        %>
+    </select>
+</div>

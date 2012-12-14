@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="form-design-demo">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="buildweb.dir" value="${build.dir}/web" />
+	<property name="dist.dir" value="dist" />
+	<property name="src.web.dir" value="web" />
+	<property name="jar.name" value="${ant.project.name}.jar" />
+	<property name="war.name" value="${ant.project.name}.war" />
+	<property name="tomcat.dir" value="/Users/lijun/java/apache-tomcat-6.0.33" />
+	
+    <path id="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath">
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/annotations-api.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/catalina-ant.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/catalina-ha.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/catalina.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/ecj-3.3.1.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/el-api.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/jasper-el.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/jasper.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/jsp-api.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/servlet-api.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../java/apache-tomcat-6.0.33/lib/tomcat-i18n-ja.jar"/>
+    </path>
+	
+    <path id="Web App Libraries.libraryclasspath">
+		<fileset dir="web/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+	
+    <path id="hrmanager.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+    </path>
+	
+    <target name="initclean">
+        <delete dir="${classes.dir}"/>
+    	<delete dir="${buildweb.dir}"/>
+    </target>
+	
+    <target name="warclean">
+        <delete dir="${classes.dir}"/>
+    	<delete dir="${buildweb.dir}"/>
+        <delete dir="${build.dir}"/>
+    </target>
+	
+    <target name="initcompile">
+        <mkdir dir="${classes.dir}"/>
+        <copy includeemptydirs="false" todir="${classes.dir}">
+            <fileset dir="java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target depends="initcompile" name="compile">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="${classes.dir}" includeantruntime="false"  source="${source}" target="${target}">
+            <src path="java"/>
+            <classpath refid="hrmanager.classpath"/>
+        </javac>
+    </target>
+	
+	<target name="manifest">
+		<echo>${ant.project.name} 生成MANIFEST.MF</echo>
+		<manifest file="${classes.dir}/MANIFEST.MF">	
+		    <attribute name="Implementation-Title" value="olivee_li"/>			
+		</manifest>
+	</target>
+
+    <target name="jar" depends="compile, manifest">
+    	<echo>${ant.project.name} 生成jar打包文件</echo>
+        <jar basedir="${classes.dir}" manifest="${classes.dir}/MANIFEST.MF" compress="true" jarfile="${buildweb.dir}/WEB-INF/lib/${jar.name}">        	
+			<include name="**"/>			
+        	<exclude name="MANIFEST.MF"/>
+        </jar>
+    </target>	
+	
+	<target name="copyweb">
+		<echo>${ant.project.name} 复制网页文件到发布路径</echo>
+		<copy todir="${buildweb.dir}">
+			<fileset dir="${src.web.dir}">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+	</target>	
+	
+	<target name="package"  depends="initclean, copyweb, jar">
+		<echo>${ant.project.name} 打包程序</echo>
+		 <war warfile="${dist.dir}/${war.name}" webxml="${buildweb.dir}/WEB-INF/web.xml"> 
+		    <lib dir="${buildweb.dir}/WEB-INF/lib"/> 
+		    <fileset dir="${buildweb.dir}"> 
+		    </fileset> 
+		 </war> 
+	</target>	
+	
+	<target name="copytotomcat" depends="initclean, copyweb, jar">
+		<echo>${ant.project.name} 复制网页到tomcat</echo>
+		<copy todir="${tomcat.dir}/webapps/form-design-demo">
+			<fileset dir="${buildweb.dir}">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target depends="copytotomcat , warclean" name="build-to-comcat"/>
+	
+	<target depends="package , warclean" name="build"/>
+</project>
