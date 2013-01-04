@@ -1,4 +1,4 @@
-package cd.youngfriend.webtools.formdesigner3.entity;
+package com.olivee.webdesigner.entity;
 
 public class Form {
 	private String id, name, xml;

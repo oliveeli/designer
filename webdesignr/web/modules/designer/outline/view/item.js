@@ -14,32 +14,31 @@ define([
 
         className: 'wd-outline-item',
 
+        selectClassName: 'wd-outline-item-select',
+
         events: {
             'click': 'onClick'
         },
 
-        template: _.template(ViewTemplate),
-
         render: function(){
+            this.model.outlineView = this;
             this.model.on( 'remove', this.remove, this );
             this.model.on( 'select', this.onSelectComponentModel, this );
             this.model.on( 'unSelect', this.onUnSelectComponentModel, this );
-            this.model.outlineView = this;
-            $(this.el).append(this.template(this.model.toJSON()));
+            $(this.el).append( _.template( ViewTemplate )( this.model.toJSON() ) );
             return this;
         },
 
         onSelectComponentModel: function( ){
-            $(this.el).addClass('wd-outline-item-select');
+            $(this.el).addClass( this.selectClassName );
         },
 
         onUnSelectComponentModel: function( ) {
-            $(this.el).removeClass('wd-outline-item-select');
+            $(this.el).removeClass( this.selectClassName );
         },
 
         onClick: function( event ){
-            var isAppendModel = event.altKey;
-            if( isAppendModel ) {
+            if( event.altKey ) {
                 if( this.model.isSelected() ){
                     this.model.trigger( 'unSelect', this.model, true );
                 } else {

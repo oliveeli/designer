@@ -13,7 +13,7 @@ define([
         return Backbone.View.extend({
 
 
-            initialize: function(options){
+            initialize: function( options ){
                 this.collection = options.collection;
                 this.collection.on('add', this.addOne, this);
                 this.itemsView = {};

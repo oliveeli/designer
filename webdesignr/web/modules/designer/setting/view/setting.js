@@ -18,13 +18,8 @@ define([
             'click #confirm': 'confirmData'
         },
 
-        template:_.template(ViewTemplate),
-
-        initialize: function(){
-        },
-
         render: function(){
-            $(this.el).append(this.template( { model: this.model.toJSON() } ));
+            $(this.el).append(_.template(ViewTemplate)( { model: this.model.toJSON() } ));
             return this;
         },
 

@@ -29,7 +29,7 @@
         <custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="myFilter" />
     </http>
 
-    <beans:bean id="myFilter" class="cd.youngfriend.webtools.security.YFFilterSecurityInterceptor">
+    <beans:bean id="myFilter" class="com.olivee.webdesigner.security.YFFilterSecurityInterceptor">
         <beans:property name="authenticationManager"
             ref="yfAuthenticationManager" />
         <beans:property name="accessDecisionManager"
@@ -50,11 +50,11 @@
     </authentication-manager>
     
     <beans:bean id="yfUserDetailService"
-        class="cd.youngfriend.webtools.security.YFUserDetailService" />
+        class="com.olivee.webdesigner.security.YFUserDetailService" />
 
     <!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
     <beans:bean id="yfAccessDecisionManagerBean"
-        class="cd.youngfriend.webtools.security.YFAccessDecisionManager">
+        class="com.olivee.webdesigner.security.YFAccessDecisionManager">
     </beans:bean>
 
 </beans:beans>
