@@ -25,9 +25,9 @@ define([
         render: function(){
             this.model = this.options.value;
             if( !this.model ) {
-                this.model = new BackgroundImageModel( { } );;
-                this.model.on('confirm', this.changed, this);
+                this.model = new BackgroundImageModel( { } );
             }
+            this.model.on('confirm', this.changed, this);
 
             $(this.el).append(this.template({property: this.options.property }));
 

@@ -17,7 +17,7 @@ define([
         },
 
         onPropertyChange: function(key, value){
-            var editor = this.$( '#editor-img'),
+            var $editor = this.$( '#editor-img'),
                 $el = $(this.el);
             switch (key){
                 case 'width':
@@ -25,14 +25,14 @@ define([
                     border = border ? border : 0;
                     border = Number(border);
                     $el.width( Number( value ) + border );
-                    editor.width( value );
+                    $editor.width( value );
                     break;
                 case 'height':
                     var border = $el.data( 'border' );
                     border = border ? border : 0;
                     border = Number(border);
                     $el.height( Number( value ) + border);
-                    editor.height( value );
+                    $editor.height( value );
                     break;
 
                 case 'border':
@@ -40,8 +40,8 @@ define([
                     bd = bd * 2;
                     value.setElementStyle( $editor );
                     $el.data( 'border', bd );
-                    $el.width( Number( editor.width() ) + bd );
-                    $el.height( Number( editor.height() ) + bd );
+                    $el.width( Number( $editor.width() ) + bd );
+                    $el.height( Number( $editor.height() ) + bd );
                     break;
                 case 'Image':
                     this.$('#editor-img').attr('src',value);
@@ -49,7 +49,7 @@ define([
             };
         },
         onPropertyChangeByUi: function( propertyValue, key, value ) {
-            var editor = this.$( '#editor-img'),
+            var $editor = this.$( '#editor-img'),
                 $el = $(this.el);
             switch (key){
                 case 'width':
@@ -58,7 +58,7 @@ define([
                     border = Number(border);
                     $el.width( value );
                     var newValue = Number( value ) - border;
-                    editor.width( newValue);
+                    $editor.width( newValue);
                     propertyValue[key] = newValue;
                     propertyValue.trigger( 'editorChangedInner', propertyValue, key, newValue );
                     break;
@@ -68,7 +68,7 @@ define([
                     border = Number(border);
                     $el.height( value );
                     var newValue = Number( value ) - border;
-                    editor.height( newValue );
+                    $editor.height( newValue );
                     propertyValue[key] = newValue;
                     propertyValue.trigger( 'editorChangedInner', propertyValue, key, newValue );
                     break;

@@ -27,8 +27,8 @@ define([
             this.model = this.options.value;
             if( !this.model ) {
                 this.model = new FontModel( { } );;
-                this.model.on('confirm', this.changed, this);
             }
+            this.model.on('confirm', this.changed, this);
 
             $(this.el).append(this.template({property: this.options.property }));
             this.$('input').val( this.model.toSaveString() );

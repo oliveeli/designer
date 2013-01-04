@@ -16,14 +16,14 @@ define([
     './scale/view/scale',
     './toolbar/view/toolbar',
     './outline/view/outline',
-    './properties/view/properties',
+    './property/view/property',
     './setting/view/setting',
     './setting/model/setting',
     './help/view/help'
 ], function( $, _, Backbone, AppCore, ModuleTemplate,
              ComponentTypeCollection, LayoutView, EditorView,
              ScaleView, ToolbarEditorView, OutlineView,
-             PropertiesView, SettingView, SettingModel,
+             PropertyView, SettingView, SettingModel,
              HelpView ){
 
         return ModuleTemplate.extend({
@@ -62,7 +62,8 @@ define([
                     toolbarEditorView.on('help', this.onHelp, this);
 
 
-                    this.editorView.on( 'show:property', this.renderPropertiesView, this );
+                    this.editorView.on( 'render:property', this.renderPropertiesView, this );
+                    this.editorView.on( 'show:property', this.showPropertyView, this );
                     this.editorView.on( 'change:context', this.renderOutlineView, this );
                     this.editorView.on( 'change:size', this.renderScaleView, this );
                     this.editorView.on( 'change:size', this.layout.onChangeEditorSize, this.layout );
@@ -155,8 +156,12 @@ define([
                         this.propertiesView.remove();
                         delete this.propertiesView;
                     }
-                    this.propertiesView = new PropertiesView({ domElement: $e }).render();
-                    this.layout.getPropertiesContainer().html('').append( $( this.propertiesView.el ) );
+                    this.propertiesView = new PropertyView({ domElement: $e }).render();
+                    this.layout.getPropertyContainer().html('').append( $( this.propertiesView.el ) );
+                },
+
+                showPropertyView: function() {
+                    this.layout.showPropertyView();
                 },
 
                 addToolbarView: function( ToolbarItemView ){

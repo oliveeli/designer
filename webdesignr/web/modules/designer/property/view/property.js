@@ -10,22 +10,22 @@ define([
     'backbone',
     './../../components/component',
     './../../property-type',
-    './string',
-    './select',
-    './select-multi',
-    './event',
-    './length',
-    './border',
-    './color',
-    './image',
-    './background-image',
-    './int',
-    './font',
-    './map'
+    './../../properties/view/string',
+    './../../properties/view/select',
+    './../../properties/view/select-multi',
+    './../../properties/view/event',
+    './../../properties/view/length',
+    './../../properties/view/border',
+    './../../properties/view/color',
+    './../../properties/view/image',
+    './../../properties/view/background-image',
+    './../../properties/view/int',
+    './../../properties/view/font',
+    './../../properties/view/map'
 ], function($, _, Backbone, Component, PropertyType, StringPropertyView, SelectPropertyView, SelectMultiPropertyView, EventPropertyView,
             LengthPropertyView, BorderPropertyView, ColorPropertyView, ImagePropertyView, BackgroundImagePropertyView,
             IntPropertyView, FontPropertyView, MapPropertyView){
-        return Backbone.View.extend({
+        var PropertyView = Backbone.View.extend({
 
             className: 'designer-properties-inner',
 
@@ -121,7 +121,17 @@ define([
                 if(view.setPropertyValue){
                     view.setPropertyValue(propertyValue);
                 }
+            },
+
+            remove: function(){
+                PropertyView.__super__.remove.call( this );
+                for( var k in this.__propertyViews__ ){
+                    this.__propertyViews__[ k ].remove();
+                }
             }
+
         });
+
+        return PropertyView;
     }
 );

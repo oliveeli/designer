@@ -100,7 +100,7 @@ define([
                             return;
                         }
                         that.selectReset();
-                        that.onShowProperty();
+                        that.renderPropertyView();
                     },
                     selecting: function ( event, ui ) {
                         var $e = $(ui.selecting),
@@ -405,7 +405,7 @@ define([
 
                 this.drawSelectArea();
                 this.drawToolbar();
-                this.onShowProperty();
+                this.renderPropertyView();
 
                 if( isAppend ){
                     return;
@@ -443,7 +443,7 @@ define([
                 this.getContext().onUnSelectComponentEditorElement( $el );
                 this.drawSelectArea();
                 this.drawToolbar();
-                this.onShowProperty();
+                this.renderPropertyView();
             },
 
             getSelectedArea: function(){
@@ -481,13 +481,16 @@ define([
             },
 
             onShowProperty: function(){
+                this.trigger( 'show:property' );
+            },
+
+            renderPropertyView: function(){
                 var $e = this.getSelectElements();
                 if ( $e.length === 1 ) {
-                    this.trigger( 'show:property', $($e[0]) );
+                    this.trigger( 'render:property', $($e[0]) );
                 } else {
-                    this.trigger( 'show:property', $(this.el) );
+                    this.trigger( 'render:property', $(this.el) );
                 }
-
             },
 
             drawToolbar: function(){
@@ -616,6 +619,7 @@ define([
                 }
                 this.selectReset();
                 this.addUndoPoint();
+                this.renderPropertyView();
             },
 
             addUndoPoint: function( options ){

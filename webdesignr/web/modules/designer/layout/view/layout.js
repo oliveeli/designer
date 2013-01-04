@@ -14,7 +14,7 @@ define([
 
             events:{
                 'click #toolBarElementTabLink':'showToolBarElementTab',
-                'click #propertiesTabLink':'showPropertiesView',
+                'click #propertiesTabLink':'showPropertyView',
                 'click #outlineTabLink':'showOutlineTab'
             },
 
@@ -26,7 +26,7 @@ define([
                 $(e.target).tab('show');
             },
 
-            showPropertiesView: function(){
+            showPropertyView: function(){
                 this.$('#propertiesTabLink').tab('show');
             },
 
@@ -51,7 +51,7 @@ define([
                 return this.$('.wd-container-outline');
             },
 
-            getPropertiesContainer: function(){
+            getPropertyContainer: function(){
                 return this.$('.wd-container-properties');
             },
 
